@@ -1,0 +1,27 @@
+String getVersionNumber() {
+    if(project.hasProperty("version")) {
+        String base = project.property("version")
+        String type = null;
+        def ENV = System.getenv()
+        String buildNumber = ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}" : "9999"
+        base += "." + buildNumber
+        if(buildNumber == "local") {
+            type = "alpha"
+        }
+        if(project.hasProperty("type")) {
+            type = project.property("type")
+        }
+        if(type == "alpha" || type == "beta") {
+            base += "-" + type
+        }
+
+        return base
+    }else {
+        throw new RuntimeException("There is no version defined pls define one in gradle.properties (EG. 2.1)")
+    }
+
+}
+
+ext {
+    getVersionNumber = this.&getVersionNumber
+}
