@@ -18,6 +18,10 @@ String getVersionNumber() {
             base += "-" + type
         }
 
+        if(project.hasProperty("minecraft_version")) {
+            base += "+mc-" + project.property("minecraft_version") 
+        }
+
         return base
     }else {
         throw new RuntimeException("There is no version defined pls define one in gradle.properties (EG. 2.1)")
