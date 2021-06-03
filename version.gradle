@@ -1,6 +1,6 @@
 String getVersionNumber() {
-    if(project.hasProperty("version")) {
-        String base = project.property("version")
+    if(project.hasProperty("mod_version")) {
+        String base = project.property("mod_version")
         String type = null;
         def ENV = System.getenv()
         String buildNumber = ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}" : "9999"
