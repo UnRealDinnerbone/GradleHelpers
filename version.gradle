@@ -19,7 +19,7 @@ String getVersionNumber() {
         }
 
         if(project.hasProperty("minecraft_version")) {
-            base += "+mc-" + project.property("minecraft_version") 
+            base += "+mc" + project.property("minecraft_version") 
         }
 
         return base
