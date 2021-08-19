@@ -4,9 +4,9 @@ String getVersionNumber() {
         String type = null;
         def ENV = System.getenv()
         String buildNumber = ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}" : "9999"
-//        if(ENV.GITHUB_RUN_NUMBER) {
-//            buildNumber = "${ENV.GITHUB_RUN_NUMBER}"
-//       }
+        if(ENV.GITHUB_RUN_NUMBER) {
+            buildNumber = "${ENV.GITHUB_RUN_NUMBER}"
+       }
         base += "." + buildNumber
         if(buildNumber == "9999") {
             type = "alpha"
