@@ -1,28 +1,8 @@
 String getVersionNumber() {
-    if(project.hasProperty("mod_version")) {
-        String base = project.property("mod_version")
-        String type = null;
+    if(project.hasProperty("version")) {
         def ENV = System.getenv()
-        String buildNumber = ENV.BUILD_NUMBER ? "${ENV.BUILD_NUMBER}" : "9999"
-        if(ENV.GITHUB_RUN_NUMBER) {
-            buildNumber = "${ENV.GITHUB_RUN_NUMBER}"
-       }
-        base += "." + buildNumber
-        if(buildNumber == "9999") {
-            type = "alpha"
-        }
-        if(project.hasProperty("release_type")) {
-            type = project.property("release_type")
-        }
-        if(type == "alpha" || type == "beta") {
-            base += "-" + type
-        }
-
-        if(project.hasProperty("minecraft_version")) {
-            base += "+mc" + project.property("minecraft_version") 
-        }
-
-        return base
+        def buildNumber = ENV.GITHUB_RUN_NUMBER ? "${ENV.GITHUB_RUN_NUMBER}" : "0"
+        version = project.getProperty("version") + ("+build." + buildNumber)
     }else {
         throw new RuntimeException("There is no version defined pls define one in gradle.properties (EG. 2.1)")
     }
