@@ -1,34 +1,20 @@
-group = 'com.unrealdinnerbone'
-archivesBaseName = project.getProperty("name")
-
-def ENV = System.getenv()
-def buildNumber = ENV.GITHUB_RUN_NUMBER ? "${ENV.GITHUB_RUN_NUMBER}" : "0"
-version = project.getProperty("version") + ("+build." + buildNumber).replace("\\", "")
-
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-println("Project: " + archivesBaseName + "@" + version + " (Java" + java.toolchain.languageVersion.get().toString() + ")")
-
-repositories {
-    mavenCentral()
-    maven { url "https://maven.unreal.codes/releases"}
+configurations {
+    shade
+    implementation.extendsFrom shade
+    shadow.extendsFrom shade
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication).from(components.java)
-    }
-    repositories {
-        maven {
-            url "https://maven.unreal.codes/releases"
-            credentials {
-                username ENV.MAVEN_USERNAME
-                password ENV.MAVEN_PASSWORD
-            }
-        }
+shadowJar {
+    manifest {
+        inheritFrom project.tasks.jar.manifest
     }
 }
 
-dependencies {
-    testImplementation 'junit:junit:4.13.2'
+jar {
+    manifest {
+        attributes(
+                'Main-Class': project.property("mainClass"),
+                "Implementation-Version": version
+        )
+    }
 }
