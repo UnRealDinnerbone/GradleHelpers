@@ -13,7 +13,7 @@ shadowJar {
 jar {
     manifest {
         attributes(
-                'Main-Class': project.property("mainClass"),
+                'Main-Class': project.getProperty("mainClass"),
                 "Implementation-Version": version
         )
     }
