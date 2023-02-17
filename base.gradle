@@ -9,6 +9,12 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(19)
 
 println("Project: " + archivesBaseName + "@" + version + " (Java" + java.toolchain.languageVersion.get().toString() + ")")
 
+configurations {
+    api
+    implementation.extendsFrom api
+    apiElements.extendsFrom api
+}
+
 repositories {
     mavenCentral()
     maven { url "https://maven.unreal.codes/releases"}
