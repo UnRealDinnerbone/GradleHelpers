@@ -5,7 +5,7 @@ def ENV = System.getenv()
 def buildNumber = ENV.GITHUB_RUN_NUMBER ? "${ENV.GITHUB_RUN_NUMBER}" : "0"
 version = project.getProperty("version") + ("+build." + buildNumber).replace("\\", "")
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+java.toolchain.languageVersion = JavaLanguageVersion.of(19)
 
 println("Project: " + archivesBaseName + "@" + version + " (Java" + java.toolchain.languageVersion.get().toString() + ")")
 
