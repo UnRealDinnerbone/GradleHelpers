@@ -20,7 +20,7 @@ repositories {
     maven { url "https://maven.unreal.codes/releases"}
 }
 
-def theMavenUrl = project.hasProperty("mavenUrl") ? project.property("https://maven.unreal.codes/releases")
+def theMavenUrl = project.hasProperty("mavenUrl") ? project.property("mavenUrl") : "https://maven.unreal.codes/releases"
 
 publishing {
     publications {
