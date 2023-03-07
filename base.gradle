@@ -20,13 +20,15 @@ repositories {
     maven { url "https://maven.unreal.codes/releases"}
 }
 
+def theMavenUrl = project.hasProperty("mavenUrl") ? project.property("https://maven.unreal.codes/releases")
+
 publishing {
     publications {
         mavenJava(MavenPublication).from(components.java)
     }
     repositories {
         maven {
-            url "https://maven.unreal.codes/releases"
+            url theMavenUrl
             credentials {
                 username ENV.MAVEN_USERNAME
                 password ENV.MAVEN_PASSWORD
