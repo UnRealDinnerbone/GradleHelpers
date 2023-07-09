@@ -20,10 +20,6 @@ repositories {
     maven { url "https://maven.unreal.codes/releases"}
 }
 
-test {
-    useJUnitPlatform()
-}
-
 def theMavenUrl = project.hasProperty("mavenUrl") ? project.property("mavenUrl") : "https://maven.unreal.codes/releases"
 
 publishing {
