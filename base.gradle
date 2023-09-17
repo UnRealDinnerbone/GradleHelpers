@@ -2,8 +2,7 @@ group = 'com.unrealdinnerbone'
 archivesBaseName = project.getProperty("name")
 
 def ENV = System.getenv()
-def buildNumber = ENV.GITHUB_RUN_NUMBER ? "${ENV.GITHUB_RUN_NUMBER}" : "0"
-version = project.getProperty("version") + ("+build." + buildNumber).replace("\\", "")
+version = project.getProperty("version")
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(19)
 
