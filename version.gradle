@@ -1,8 +1,6 @@
 String getVersionNumber() {
     if(project.hasProperty("version")) {
-        def ENV = System.getenv()
-        def buildNumber = ENV.GITHUB_RUN_NUMBER ? "${ENV.GITHUB_RUN_NUMBER}" : "0"
-        version = project.getProperty("version") + ("+build." + buildNumber)
+        version = project.getProperty("version")
     }else {
         throw new RuntimeException("There is no version defined pls define one in gradle.properties (EG. 2.1)")
     }
