@@ -4,7 +4,7 @@ archivesBaseName = project.getProperty("name")
 def ENV = System.getenv()
 version = project.getProperty("version")
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(19)
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 println("Project: " + archivesBaseName + "@" + version + " (Java" + java.toolchain.languageVersion.get().toString() + ")")
 
